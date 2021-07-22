@@ -23,14 +23,16 @@ targets = ["x86_64-unknown-linux-gnu"]
 features = ["span-locations"]
 
 [dependencies]
-unicode-xid = "0.2"
+unicode-xid = { version = "0.2" , git = "https://github.com/sgx-test/derivative-sgx"}
+sgx_tstd = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 
-[dev-dependencies]
-quote = { version = "1.0", default_features = false }
+#[dev-dependencies]
+#quote = { version = "1.0", default_features = false }
 
 [features]
 proc-macro = []
-default = ["proc-macro"]
+default = ["mesalock_sgx"]
+mesalock_sgx = ["sgx_tstd"]
 
 # Expose methods Span::start and Span::end which give the line/column location
 # of a token.
